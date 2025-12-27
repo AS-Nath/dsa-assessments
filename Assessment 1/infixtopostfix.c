@@ -25,30 +25,30 @@ int main(void) {
     scanf("%s", s); 
 
     for (int i = 0; i < strlen(s); i++) {
-        // Alphanumeric, open bracket, closed bracket, or operand.
+        // Alphanumeric, open bracket, closed bracket, or operand ? 
         if (isalnum(s[i])) {
             printf("%c", s[i]);
-        }
+        } // Print operands directly to console 
         else if (s[i] == '(') {
-            push(&st, s[i]);
+            push(&st, s[i]); // Brackets get pushed to stack
         }
         else if (s[i] == ')') {
             int x;
             while ((x = pop(&st)) != '(') {
                 printf("%c", x);
-            }
+            } // Close and remove the most recent bracketed expression
         }
         else {
             while (priority(s[i]) <= priority(st.arr[st.top])) {
                 printf("%c", pop(&st));
             }
             push(&st, s[i]);
-        }
+        } // Ensure that no low priority sits on a high priority and add to stack
         
     }
     while (st.top > -1) {
         printf("%c", pop(&st)); 
-    }
+    } // Empty the stack if anything is left 
     printf("\n");
     return 0;
 }
@@ -103,4 +103,4 @@ void display(struct Stack* st) {
     }
 }
 
-// a+b-(c*d)
+// a+b-(c*d) => ab+cd*-
