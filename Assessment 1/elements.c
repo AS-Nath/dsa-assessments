@@ -12,6 +12,6 @@ int main(void) {
     printf("Array Elements : ");
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]); 
-    }
+    } // Printing on one line for conciseness
     printf("\n");
 }

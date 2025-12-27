@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> 
+#include <stdbool.h>
 
 struct Queue {
     int n;
@@ -18,15 +19,33 @@ int main(void) {
     q.front = -1;
     q.rear = -1;
     q.arr = (int *)calloc(q.n, sizeof(int)); 
-    push(&q, 1); 
-    push(&q, 2); 
-    push(&q, 3); 
-    push(&q, 4); 
-    push(&q, 5); 
-    printf("Popped %d!\n", pop(&q));
-    printf("Popped %d!\n", pop(&q));
-    printf("Popped %d!\n", pop(&q));
-    display(&q); 
+    while (true) {
+        printf("Enter 1 to Push\n");
+        printf("Enter 2 to Pop\n");
+        printf("Enter 3 to Display\n");
+        printf("Enter any other integer to Exit\n");
+        int c;
+        scanf("%d", &c); 
+        switch(c) {
+            case 1 : 
+                printf("Push Value : ");
+                int x;
+                scanf("%d", &x);
+                push(&q, x);
+                break; 
+            case 2 : 
+                pop(&q);
+                break; 
+            case 3 : 
+                display(&q); 
+                break; 
+            default :
+                free(q.arr); 
+                return 0; 
+        }
+    }
+    free(q.arr); 
+    return 0; 
 }
 
 void push(struct Queue* q, int v) {

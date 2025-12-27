@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /*
 Parameters : 
@@ -7,10 +8,10 @@ We'll maintain a stack whose size can be initialised at the start and not again.
 We can push, pop, and display from top. 
 */
 
-struct Stack {
-    int n; // Size
-    int top; // Top
-    int *arr; // Elements
+typedef struct Stack {
+    int n; 
+    int top; 
+    int *arr; 
 };
 
 void push(struct Stack* st, int v);
@@ -22,15 +23,31 @@ int main(void) {
     st.n = 5;
     st.top = -1; 
     st.arr = (int *)calloc(st.n, sizeof(int)); 
-    // We'll perform operations from here.
-    pop(&st); // We expect overflow negative direction 
-    push(&st, 1); 
-    push(&st, 2);
-    push(&st, 3);
-    push(&st, 4);
-    push(&st, 5);
-    push(&st, 6); // We expect an overflow 
-    display(&st);
+    while (true) {
+        printf("Enter 1 to Push\n");
+        printf("Enter 2 to Pop\n");
+        printf("Enter 3 to Display\n");
+        printf("Enter any other integer to Exit\n");
+        int c;
+        scanf("%d", &c); 
+        switch(c) {
+            case 1 : 
+                printf("Push Value : ");
+                int x;
+                scanf("%d", &x);
+                push(&st, x);
+                break; 
+            case 2 : 
+                pop(&st);
+                break; 
+            case 3 : 
+                display(&st); 
+                break; 
+            default :
+                free(st.arr); 
+                return 0; 
+        }
+    }
     free(st.arr);
     return 0;
 }
@@ -43,7 +60,7 @@ void push(struct Stack* st, int v) {
         st -> top += 1;
         st -> arr[st -> top] = v;
         printf("Pushed %d to stack\n", v); 
-    }
+    } // Full Ascending Stack. If not full, increment the top and push.
 }
 
 void pop(struct Stack* st) {
@@ -53,7 +70,7 @@ void pop(struct Stack* st) {
     else {
         printf("Popped %d\n", (st -> arr[st -> top]));
         st -> top -= 1; 
-    }
+    } // If not empty, remove the element and decrement the top. 
 }
 
 void display(struct Stack* st) {
@@ -66,5 +83,5 @@ void display(struct Stack* st) {
             printf("%d ", st -> arr[i]);
         }
         printf("\n"); 
-    }
+    } // Display from top to bottom if the stack has elements. 
 }
