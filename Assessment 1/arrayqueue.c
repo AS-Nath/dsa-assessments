@@ -15,7 +15,10 @@ void display(struct Queue*);
 
 int main(void) {
     struct Queue q;
-    q.n = 7;
+    int qsize = 0;
+    printf("Enter Queue Size : "); 
+    scanf("%d", &qsize); 
+    q.n = qsize;
     q.front = -1;
     q.rear = -1;
     q.arr = (int *)calloc(q.n, sizeof(int)); 

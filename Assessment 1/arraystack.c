@@ -8,7 +8,7 @@ We'll maintain a stack whose size can be initialised at the start and not again.
 We can push, pop, and display from top. 
 */
 
-typedef struct Stack {
+struct Stack {
     int n; 
     int top; 
     int *arr; 
@@ -20,7 +20,10 @@ void display(struct Stack* st);
 
 int main(void) {
     struct Stack st;
-    st.n = 5;
+    int stacksize = 0;
+    printf("Enter Stack Size : "); 
+    scanf("%d", &stacksize); 
+    st.n = stacksize;
     st.top = -1; 
     st.arr = (int *)calloc(st.n, sizeof(int)); 
     while (true) {
