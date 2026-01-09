@@ -9,8 +9,8 @@ struct Queue {
     int *arr;
 }; 
 
-void push(struct Queue* q, int v);
-int pop(); 
+void enqueue(struct Queue* q, int v);
+int dequeue(struct Queue* q); 
 void display(struct Queue*); 
 
 int main(void) {
@@ -23,21 +23,21 @@ int main(void) {
     q.rear = -1;
     q.arr = (int *)calloc(q.n, sizeof(int)); 
     while (true) {
-        printf("Enter 1 to Push\n");
-        printf("Enter 2 to Pop\n");
+        printf("Enter 1 to Enqueue\n");
+        printf("Enter 2 to Dequeue\n");
         printf("Enter 3 to Display\n");
         printf("Enter any other integer to Exit\n");
         int c;
         scanf("%d", &c); 
         switch(c) {
             case 1 : 
-                printf("Push Value : ");
+                printf("Enqueue Value : ");
                 int x;
                 scanf("%d", &x);
-                push(&q, x);
+                enqueue(&q, x);
                 break; 
             case 2 : 
-                pop(&q);
+                dequeue(&q);
                 break; 
             case 3 : 
                 display(&q); 
@@ -51,23 +51,23 @@ int main(void) {
     return 0; 
 }
 
-void push(struct Queue* q, int v) {
+void enqueue(struct Queue* q, int v) {
     if ((q -> rear) == (q -> n) - 1) {
         printf("Queue is full.\n"); 
     }
     else if (q -> rear == -1 && q -> front == -1) {
         q -> rear = 0; q -> front = 0;
         q -> arr[q -> rear] = v; 
-        printf("Pushed %d to queue!\n", v); 
+        printf("Enqueued %d!\n", v); 
     }
     else {
         q -> rear += 1;
         q -> arr[q -> rear] = v; 
-        printf("Pushed %d to queue!\n", v);
+        printf("Enqueued %d!\n", v);
     }
 }
 
-int pop(struct Queue* q) {
+int dequeue(struct Queue* q) {
     if (q -> rear == -1 && q -> front == -1) {
         printf("Queue is empty.\n");
     }
