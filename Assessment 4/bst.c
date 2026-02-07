@@ -59,7 +59,8 @@ void insert(struct Node** head, int v) {
             current -> left = (struct Node *)malloc(sizeof(struct Node)); 
             current -> left -> data = v; 
             current -> left -> left = NULL; 
-            current -> left -> right = NULL; 
+            current -> left -> right = NULL;             
+            printf("Inserted %d in BST!\n", v);
         }
     }
     else {
@@ -70,10 +71,10 @@ void insert(struct Node** head, int v) {
             current -> right = (struct Node *)malloc(sizeof(struct Node)); 
             current -> right -> data = v; 
             current -> right -> left = NULL;
-            current -> right -> right = NULL; 
+            current -> right -> right = NULL;    
+            printf("Inserted %d in BST!\n", v); 
         }
     }
-    printf("Inserted %d in BST!\n", v);
 }
 
 struct Node* search(struct Node* root, int val) {
