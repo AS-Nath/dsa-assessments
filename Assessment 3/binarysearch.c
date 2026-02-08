@@ -2,16 +2,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool search(int* arr, int l, int r, int target) {
-    if (l >= r) {
-        if (arr[l] == target) {
-            return true;
-        }
-        return false;
+int search(int* arr, int l, int r, int target) {
+    if (l > r) {
+        return -1;
     }
     int mid = l + (r - l) / 2;
     if (arr[mid] == target) {
-        return true; 
+        return mid; 
     }
     else if (arr[mid] < target) {
         return search(arr, mid + 1, r, target);
@@ -46,8 +43,9 @@ int main(void) {
     scanf("%d", &target); 
     // User can enter in any order, the program will sort it. 
     qsort(arr, n, sizeof(int), comp);
-    if (search(arr, 0, n - 1, target)) {
-        printf("Found!\n");
+    int v = search(arr, 0, n - 1, target);
+    if (v > 0) {
+        printf("Found at index %d!\n", v);
     }   
     else {
         printf("Not Found!\n"); 
