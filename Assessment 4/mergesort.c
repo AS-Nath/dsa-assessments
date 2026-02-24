@@ -64,4 +64,7 @@ void sort(int* arr, int n, int l, int r) {
     }
 }
 
-
+/*
+7
+21 45 32 69 85 79 77
+*/

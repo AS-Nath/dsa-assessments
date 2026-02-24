@@ -25,3 +25,7 @@ int main(void) {
     printf("\n"); 
     return 0;
 }
+/*
+7
+21 45 32 69 85 79 77
+*/
