@@ -102,13 +102,6 @@ int pop_back(Deque* dq) {
         dq -> front = -1;
         return x; 
     }
-    else if (dq -> rear - dq -> front == 1) {
-        printf("Popped %d from Deque rear.\n", dq -> arr[dq -> rear]); 
-        int x = dq -> arr[dq -> rear];
-        dq -> rear = -1;
-        dq -> front = -1;  
-        return x;
-    }
     else {
         printf("Popped %d from Deque rear.\n", dq -> arr[dq -> rear]); 
         int x = dq -> arr[dq -> rear];
