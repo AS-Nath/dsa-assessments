@@ -91,20 +91,20 @@ struct BST {
         if (n == copy -> data) {
             if (copy -> left == nullptr && copy -> right == nullptr) {  
                 delete copy;
+                copy = nullptr; 
             }
             else if (copy -> left == nullptr || copy -> right == nullptr) {
                 Node* delNode = copy; 
                 copy = (copy -> left == nullptr) ? copy -> right : copy -> left; 
                 delete delNode; 
+                delNode = nullptr; 
             }
             else {
                 Node* replacement = max(copy -> left); 
-                int val = replacement -> data; 
-                Node* delNode = replacement;
-                replacement = replacement -> left; // If there is a left child, push it up. 
-                delete delNode; 
-                copy -> data = val; 
+                copy -> data = replacement -> data; 
+                remove(copy -> left, replacement -> data); 
             }
+            cout << "Reached" << endl; 
             return; 
         }
         else if (n < copy -> data) {
@@ -125,7 +125,7 @@ int main(void) {
     bst.insert(4);
     bst.insert(1);
     bst.insert(5); 
-    bst.remove(bst.root, 5); 
+    bst.remove(bst.root, 3); 
     bst.preorder(bst.root); 
     cout << endl;
     bst.inorder(bst.root);
