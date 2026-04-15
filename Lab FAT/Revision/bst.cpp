@@ -77,6 +77,7 @@ struct BST {
                 Node* delNode = copy; 
                 copy = (copy -> right == nullptr) ? copy -> left : copy -> right; 
                 delete delNode;  
+                delNode = nullptr; 
             }
             else {
                 Node* replacement = max(copy -> left); 
